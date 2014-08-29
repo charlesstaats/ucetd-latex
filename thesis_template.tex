@@ -1,23 +1,35 @@
 % ---- ETD Document Class and Useful Packages ---- %
+% Note: adding the [safe] option before {ucetd} will produce slightly inferior 
+% spacing, but may fix certain errors.
 \documentclass{ucetd}
-\usepackage{subfigure,epsfig,amsfonts}
 \usepackage{natbib}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsthm}
 
+% NOTE: The following package is included for dummy text only.
+% It should be omitted from your final draft.
+\usepackage{lipsum}
+
+%% Set the bibliography style here; look up information on natbib for more info.
+%% (Comment this line out if you are using biblatex rather than the older, but more standard, bibtex.)
+\AtBeginDocument{\bibliographystyle{plainnat}}
+
 %% Use these commands to set biographic information for the title page:
 \title{Thesis Title}
 \author{Thesis Author}
-\department{Thesis Department}
-\division{Thesis Division}
-\degree{Type of Degree}
+\departmentname{Thesis Department}
+\divisionname{Thesis Division} % old version \division causes error in safe mode
+\degreename{Type of Degree} % old version \degree causes error in safe mode
 \date{Graduation Date}
 
 %% Use these commands to set a dedication and epigraph text
 \dedication{Dedication Text}
 \epigraph{Epigraph Text}
 
+%% Specify any supplementary files that should be added to the end of the table of contents:
+\supplementaryfile{Video Clips from President Zimmerman's Inauguration}
+\supplementaryfile[\texttt{temperatures.dat} (supplementary file)]{Daily Temperature Records at Many Locations for the Last Fifty Years}
 
 \begin{document}
 %% Basic setup commands
@@ -48,17 +60,34 @@
 \chapter{Introduction}
 % Introductory stuff
 
+Here's a list of things:
+% To double-space individual items (not recommended), use the environments ending in DS.
+%\begin{itemizeDS}
+\begin{itemize}
+\item The first item
+\item The second item
+\item \lipsum*[4]
+
+\lipsum*[5]
+%\end{itemizeDS}
+\end{itemize}
+% Similarly, you can use enumerate to get a numbered list, and enumerateDS to get a numbered 
+% list in which individual items are double-spaced (again, this is permitted but not recommended).
+
 \chapter{A Chapter}
 \section{Introduction}
 % Intro to chapter one
 
 % Format a LaTeX bibliography
-\makebibliography
+% Specify the filename(s) of your .bib file(s), separated by commas
+\makebibliography{filename1,filename2}
+%% IF USING BIBLATEX: Comment out (or delete) the line above. Specify the filename(s) 
+%% using \addbibresource in the preamble as usual, then construct the bibliography 
+%% by un-commenting the following line:
+%\makebibliography
 
 % Figures and tables, if you decide to leave them to the end
 %\input{figure}
 %\input{table}
 
 \end{document}
-
-
